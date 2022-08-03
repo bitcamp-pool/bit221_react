@@ -1,8 +1,12 @@
 import React from 'react'
+import Slider from '../ui/Slider'
 
 function Main() {
   return (
-    <div>Main</div>
+    <div>Main Page
+      <hr/>
+      <Slider/>
+    </div>
   )
 }
 

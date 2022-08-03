@@ -1,4 +1,6 @@
 import React from 'react'
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const styles = {
   footer:{
@@ -22,12 +24,26 @@ const styles = {
 
 
 function Footer() {
+
+  const {isDark, setIsDark} = useContext(ThemeContext);
+
+  const setDark = ()=>{
+    return {...styles.footer, backgroundColor:'#333', color:'#eee'}
+  }
+
+  const toggle = ()=>{
+    setIsDark(!isDark);
+    document.querySelector('.btn').innerHTML = isDark ? 'Dark':'Light';
+  }
+
   return (
     <>
-      <footer style={styles.footer}>
+      <footer style={isDark ? setDark() : styles.footer}>
         <div className='contain' style={styles.contain}>
           Currently v5.2.1 Code licensed BIT211, docs CC BY 3.0.
-          <button className='btn btn-danger ml-5'>
+          <button className='btn btn-danger ml-5'
+            onClick={toggle}
+          >
             Dark
           </button>
         </div>

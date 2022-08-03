@@ -1,5 +1,9 @@
 import React from 'react'
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 import './layout.css'
+
+import { NavLink } from 'react-router-dom'
 
 const styles = {
   header:{
@@ -32,24 +36,31 @@ const styles = {
 
 
 function Header() {
+  // 컨텍스트 정보 가져오기
+  const {isDark} = useContext(ThemeContext);
+
+  const setDark = ()=>{
+    return {...styles.header, backgroundColor:'#333', color:'#eee'};
+  };
+
   return (
     <>
-      <header style={styles.header}>
+      <header style={isDark ? setDark() : styles.header}>
         <img src='2918.jpg' alt='' style={styles.avatar}/>
         <h4 style={styles.h4}>
           Bitcamp
           <i className="fa-solid fa-house-user"></i>
         </h4>
         
-        <div>
-          <ul style={styles.ul}>
-            <li>Home</li>
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Java</li>
-            <li>SpringBoot</li>
-          </ul>
-        </div>
+        <nav className='ml-5'>
+          
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"js"}>JavaScript</NavLink>
+          <NavLink to={"react"}>React</NavLink>
+          <NavLink to={"java"}>Java</NavLink>
+          <NavLink to={"sb"}>SpringBoot</NavLink>
+          
+        </nav>
 
       </header>
     </>
